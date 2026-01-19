@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Samuel Cobos Hurtado · NetSuite Developer</title>
+  <meta name="description" content="Personal CV website of Samuel Cobos Hurtado, NetSuite developer and solution architect. Featured case: certified NetSuite–Dow Jones integration for automated customer risk validation." />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preload" as="image" href="images/profile.jpg" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-grid">
+      <div class="hero-copy">
+        <h1 class="title">Samuel Cobos Hurtado</h1>
+        <p class="subtitle">NetSuite Developer · Solution Architect</p>
+        <div class="quick-badges" aria-label="Quick summary">
+          <span class="badge">Customer: Noventiq</span>
+          <span class="badge badge-primary">NetSuite–Dow Jones Integration</span>
+          <span class="badge">Compliance & Risk</span>
+        </div>
+        <p class="summary">I designed and delivered a certified integration between NetSuite and Dow Jones for automated customer risk validation and regulatory compliance.</p>
+        <nav class="hero-actions" aria-label="Sections">
+          <a class="btn" href="#project">Featured case</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </nav>
+      </div>
+      <figure class="hero-media">
+        <img class="avatar" src="images/profile.jpg" alt="Profile photo of Samuel Cobos Hurtado" loading="eager" />
+        <figcaption class="visually-hidden">Professional headshot</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main id="content" class="site-main" role="main">
+    <section id="project" class="section">
+      <div class="container">
+        <h2 class="section-title">Featured Case: Noventiq × Dow Jones</h2>
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="chip">NetSuite</span>
+            <span class="chip">SuiteScript</span>
+            <span class="chip">NetSuite API</span>
+            <span class="chip">Dow Jones Screening & Monitoring API</span>
+            <span class="chip">Compliance & Risk Management</span>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-block">
+              <h3>Context</h3>
+              <p>Noventiq required an integration with Dow Jones to validate customers against risk lists before processing transactions. I designed a custom integration between NetSuite and Dow Jones’ Screening & Monitoring API to retrieve risk data and match it against customer records, ensuring compliance with internal policies and regulatory requirements.</p>
+            </article>
+
+            <article class="project-block">
+              <h3>Complexity</h3>
+              <ul class="list">
+                <li>Connecting NetSuite with Dow Jones (no existing connector).</li>
+                <li>Matching large customer volumes against global risk lists.</li>
+                <li>Auto-flagging or inactivating customers in NetSuite when sanctions or risks were detected.</li>
+                <li>Coexisting with other integrations while maintaining performance and scalability.</li>
+              </ul>
+            </article>
+
+            <article class="project-block">
+              <h3>Role</h3>
+              <p>Solution Architect responsible for end-to-end design and delivery, collaborating with a compliance expert to translate regulatory requirements into a scalable technical solution.</p>
+            </article>
+
+            <article class="project-block">
+              <h3>Outcome</h3>
+              <p>Successfully delivered a fully operational integration following best practices and SDLC. The architecture was certified by Dow Jones after multiple demos, ensuring smooth and compliant data exchange between systems.</p>
+            </article>
+          </div>
+
+          <div class="project-aside">
+            <h4>Short summary</h4>
+            <p class="highlight">Designed and delivered a certified NetSuite–Dow Jones integration for automated customer risk validation and compliance.</p>
+            <h4 class="compact">Extra-short variant</h4>
+            <p class="muted">NetSuite integration with Dow Jones Screening & Monitoring API for automated customer risk management.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section alt">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <ul class="skills">
+          <li>NetSuite</li>
+          <li>SuiteScript</li>
+          <li>JavaScript / TypeScript</li>
+          <li>REST / SOAP Integrations</li>
+          <li>Solution Architecture</li>
+          <li>Compliance & Risk</li>
+          <li>Process Automation</li>
+          <li>Testing & SDLC</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact">
+        <h2 class="section-title">Contact</h2>
+        <p>Let’s connect. I’m available for NetSuite integration, automation, and architecture projects.</p>
+        <div class="contact-actions">
+          <a class="btn" href="mailto:thdominguez5@gmail.com" aria-label="Send email">thdominguez5@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/samuel-cobos-hurtado-8182a4145/" rel="noopener" target="_blank" aria-label="Open LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <small>© <span id="year"></span> Samuel Cobos Hurtado. All rights reserved.</small>
+      <nav aria-label="Quick links" class="footer-nav">
+        <a href="#content">Back to top</a>
+        <a href="#project">Featured case</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const el = document.getElementById('year');
+    if (el) el.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
