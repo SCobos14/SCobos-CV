@@ -285,9 +285,48 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
   white-space: nowrap;
 }
 .banner-icon { font-size: 1.25rem; }
-.banner-name { font-weight: 600; }
+.banner-name { font-weight: 600; color: rgb(53, 53, 53); }
 @media (max-width: 720px) {
   .ns-banner-inner { gap: 0.5rem; padding: 0.4rem; }
   .banner-search input[type="search"] { max-width: 200px; }
   .banner-images { display: none; } /* hide logos on small screens */
+}
+
+.banner-search-input {
+  cursor: default;
+  background-color: rgba(0,0,0,0.02);
+  color: inherit;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+}
+.banner-search-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.banner-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: normal; /* allow wrapping/stacking */
+  min-width: 160px;
+}
+
+.banner-name {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.banner-name-line {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #000;
+}
+
+.banner-role {
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.75);
+  margin-top: 1px;
 }
