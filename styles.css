@@ -243,3 +243,51 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
 .client-detail h3 { margin: 0 0 .25rem; }
 .client-detail .muted { color: #64748b; }
 
+/* Add banner styles */
+.ns-banner {
+  background: var(--surface, #f6f7f9);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.ns-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+}
+.banner-images {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.banner-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.banner-search {
+  flex: 1;
+}
+.banner-search input[type="search"] {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 6px;
+  background: #fff;
+}
+.banner-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+.banner-icon { font-size: 1.25rem; }
+.banner-name { font-weight: 600; }
+@media (max-width: 720px) {
+  .ns-banner-inner { gap: 0.5rem; padding: 0.4rem; }
+  .banner-search input[type="search"] { max-width: 200px; }
+  .banner-images { display: none; } /* hide logos on small screens */
+}
