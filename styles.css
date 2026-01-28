@@ -269,11 +269,11 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
 .ns-sidebar{ position: sticky; top: 64px; align-self: start; display: grid; gap: 1rem; }
 .ns-main{ min-height: 70vh; }
 
-.portlet{ background: var(--ns-card); border: 1px solid var(--ns-border); border-radius: .6rem; box-shadow: 0 4px 12px rgba(15, 23, 42, .04); padding: .8rem; }
+.portlet{ background: var(--ns-card); border: 1px solid var(--border); border-radius: .6rem; box-shadow: 0 4px 12px rgba(15, 23, 42, .04); padding: .8rem; }
 .portlet-title{ font-weight: 700; color: #111827; margin-bottom: .6rem; }
 
 .kpis{ display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .5rem; }
-.kpi{ display: grid; gap: .15rem; place-items: center; padding: .6rem .4rem; border: 1px solid var(--ns-border); border-radius: .5rem; background: linear-gradient(180deg, #fff, #fafbff); }
+.kpi{ display: grid; gap: .15rem; place-items: center; padding: .6rem .4rem; border: 1px solid var(--border); border-radius: .5rem; background: linear-gradient(180deg, #fff, #fafbff); }
 .kpi-value{ font-size: 1.15rem; font-weight: 800; color: #4338ca; }
 .kpi-label{ font-size: .75rem; color: #6b7280; }
 
@@ -487,8 +487,8 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
 }
 
 .summary-box {
-  display: inline-block;
-  max-width: 800px;       /* prevents full-width stretch */
+  display: block;
+  max-width: var(--summary-width);
   width: 100%;
   background: #ffffff;
   border: 1px solid rgba(0,0,0,0.08);
@@ -498,15 +498,79 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
   margin-top: 10px;
 }
 
-/* keep paragraph text intact but constrained */
-.summary-box .summary {
-  margin: 0;
-  color: #000;
-  line-height: 1.45;
-  font-size: 0.95rem;
+/* Profile summary: keep the box from stretching wider than the text measure */
+.ns-profile .summary-box{
+  /* Match Experience table/Skills inner measure */
+  width: 70%;
+  max-width: none;
+  margin-top: 0.9rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
 }
 
-/* responsive tweak: full width on very small screens */
 @media (max-width: 480px) {
   .summary-box { padding: 10px; max-width: 100%; }
 }
+
+/* In profile, keep the text column from overflowing */
+.ns-profile .profile-copy{ min-width: 0; width: 70%; }
+
+/* Profile layout: match the same inner-right-edge as Experience/Skills (70%) */
+.ns-profile .profile-wrap{
+  align-items: start;
+}
+
+@media (max-width: 1080px){
+  .ns-profile .profile-copy{ width: 100%; }
+}
+
+/* === Profile (refined, more professional) === */
+/* Reset previous profile width hacks */
+.ns-profile .profile-copy{ width: auto; }
+
+.profile-wrap{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.ns-profile .avatar{
+  width: 120px;
+  height: 120px;
+  border-radius: 14px;
+  border: 1px solid var(--ns-border);
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(15,23,42,.08);
+}
+
+.ns-profile .profile-copy h3{
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.ns-profile .profile-copy .subtitle{
+  margin: .35rem 0 0;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* Summary becomes a full-width row beneath the header */
+.ns-profile .summary-box{
+  /* Match Experience table/Skills inner measure */
+  width: 70%;
+  max-width: none;
+  margin-top: 0.9rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+}
+
+@media (max-width: 1080px){
+  .ns-profile .summary-box{ width: 100%; }
+}
+
+/* ...existing code... */
