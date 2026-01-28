@@ -442,9 +442,56 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
 .banner-icon { font-size: 1.25rem; }
 .banner-name { font-weight: 600; color: rgb(53, 53, 53); }
 @media (max-width: 720px) {
-  .ns-banner-inner { gap: 0.5rem; padding: 0.4rem; }
-  .banner-search input[type="search"] { max-width: 200px; }
-  .banner-images { display: none; } /* hide logos on small screens */
+  .ns-banner-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logos user"
+      "search search";
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .75rem;
+  }
+
+  /* Ensure children don't force overflow */
+  .ns-banner-inner > *{ min-width: 0; }
+
+  /* Left: logos */
+  .banner-images{
+    grid-area: logos;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    min-width: 0;
+  }
+  .banner-img{ height: 20px; }
+
+  /* Search row (disabled by default on mobile) */
+  .banner-search{ grid-area: search; display: none; width: 100%; }
+  .banner-search input[type="search"]{ width: 100%; max-width: none; }
+
+  /* Right: user chip */
+  .banner-user{
+    grid-area: user;
+    justify-self: end;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  /* Hide help/feedback banners on phones */
+  .ns-banner-inner .banner-user:nth-of-type(1),
+  .ns-banner-inner .banner-user:nth-of-type(2){
+    display: none;
+  }
+
+  /* Compact typography */
+  .banner-name{ min-width: 0; }
+  .banner-name-line{ font-size: .9rem; overflow: hidden; text-overflow: ellipsis; }
+  .banner-role{ font-size: .72rem; overflow: hidden; text-overflow: ellipsis; }
+}
+
+@media (max-width: 420px){
+  .banner-images{ display: none; }
 }
 
 .banner-search-input {
@@ -624,11 +671,47 @@ body.ns-layout .summary{ color: #374151; }
   .ns-profile .summary-box{ width: 100%; }
 }
 
-/* ...existing code... */
+/* --- Banner mobile strategy (CV): hide non-essential banner elements on phones --- */
+/* NOTE: This file currently has multiple banner rules; these are explicit overrides so mobile is deterministic. */
 
-/* === Profile (legacy rules removed in favor of refined profile block) === */
-/* The styles below were previously used while iterating on widths and are now intentionally removed:
-   - .ns-profile .profile-copy width hacks
-   - duplicate .profile-wrap definitions
-   - earlier .ns-profile .summary-box sizing overrides
-*/
+/* Global: don't force banner items to be wide (prevents overflow on small screens) */
+.banner-user{ min-width: 0; }
+
+@media (max-width: 720px){
+  /* Keep only the user name chip on mobile */
+  .banner-search,
+  .banner-spacer,
+  .banner-divider,
+  .banner-images,
+  /* Hide the Help + Feedback banner-user items specifically */
+  .ns-banner-inner .banner-user:nth-of-type(1),
+  .ns-banner-inner .banner-user:nth-of-type(2){
+    display: none !important;
+  }
+
+  /* Ensure the remaining user chip never overlaps */
+  .ns-banner-inner{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .5rem;
+    padding: .5rem .75rem;
+  }
+
+  .ns-banner-inner > *{ min-width: 0; }
+
+  .ns-banner-inner .banner-user{
+    white-space: nowrap;
+  }
+
+  .banner-name-line,
+  .banner-role{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70vw;
+    display: block;
+  }
+
+  /* If the banner is not useful on mobile for this CV, hide it entirely */
+  .ns-banner{ display: none !important; }
+}
