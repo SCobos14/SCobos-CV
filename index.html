@@ -194,34 +194,36 @@
           </div>
         </div> -->
 
-
-        <div class="portlet" id="skills">
-          <div class="portlet-title">Skills</div>
-          <ul class="skills">
-            <li>NetSuite</li>
-            <li>SDF</li>
-            <li>CI/CD</li>
-            <li>TypeScript</li>
-            <li>SuiteScript</li>
-            <li>Solution Architecture</li>
-            <li>Integrations and APIs</li>
-          </ul>
+        <div class="portlet" id="skills-toggle-box" style="grid-column: span 6;">
+          <div class="portlet-title">Skills
+            <button id="toggle-skills-btn" class="btn btn-ghost"
+              style="float:right; font-size:0.95rem; padding:0.3rem 0.8rem; margin-top:-2px;">Show Soft Skills</button>
+          </div>
+          <div class="skills-switcher">
+            <ul class="skills skills-list skills-technical" id="skills-technical"
+              style="transition: opacity 0.4s; opacity: 1;">
+              <li>NetSuite</li>
+              <li>SDF</li>
+              <li>CI/CD</li>
+              <li>TypeScript</li>
+              <li>SuiteScript</li>
+              <li>Solution Architecture</li>
+              <li>Integrations and APIs</li>
+            </ul>
+            <ul class="skills skills-list skills-soft" id="skills-soft"
+              style="display:none; transition: opacity 0.4s; opacity: 0;">
+              <li>Leadership & Mentoring</li>
+              <li>Resource Management</li>
+              <li>Problem Solving</li>
+              <li>Strategic Thinking</li>
+              <li>Decision Making</li>
+              <li>Communication</li>
+              <li>Quality Focus</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="portlet" id="skills">
-          <div class="portlet-title">Soft Skills</div>
-          <ul class="skills">
-            <li>Leadership & Mentoring</li>
-            <li>Resource Management</li>
-            <li>Problem Solving </li>
-            <li>Strategic Thinking</li>
-            <li>Decision Making</li>
-            <li>Communication</li>
-            <li>Quality Focus</li>
-          </ul>
-        </div>
-
-        <div class="portlet" id="education">
+        <div class="portlet" id="education" style="grid-column: span 6;">
           <div class="portlet-title">Licenses & certifications</div>
           <ul class="ns-list">
             <li><a href="files/suitefoundation_title.pdf" target="_blank" rel="noopener" class="badge"
@@ -300,6 +302,34 @@
         }
         carousel.querySelectorAll('.client-logo').forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
+      });
+    }
+
+    // Skills toggle logic
+    const toggleBtn = document.getElementById('toggle-skills-btn');
+    const techList = document.getElementById('skills-technical');
+    const softList = document.getElementById('skills-soft');
+    let showingSoft = false;
+    if (toggleBtn && techList && softList) {
+      toggleBtn.addEventListener('click', function() {
+        if (!showingSoft) {
+          techList.style.opacity = 0;
+          setTimeout(() => {
+            techList.style.display = 'none';
+            softList.style.display = 'grid';
+            setTimeout(() => { softList.style.opacity = 1; }, 10);
+          }, 400);
+          toggleBtn.textContent = 'Show Technical Skills';
+        } else {
+          softList.style.opacity = 0;
+          setTimeout(() => {
+            softList.style.display = 'none';
+            techList.style.display = 'grid';
+            setTimeout(() => { techList.style.opacity = 1; }, 10);
+          }, 400);
+          toggleBtn.textContent = 'Show Soft Skills';
+        }
+        showingSoft = !showingSoft;
       });
     }
   </script>
