@@ -573,4 +573,62 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
   .ns-profile .summary-box{ width: 100%; }
 }
 
+/* --- Deterministic NetSuite palette + consistent rendering across machines --- */
+/* Force the CV dashboard to use one consistent scheme (prevents OS light/dark differences) */
+body.ns-layout{
+  color-scheme: light;
+}
+
+:root{
+  /* ensure these exist even if prefers-color-scheme overrides earlier vars */
+  --ns-border: #e3e8ef;
+  --ns-card: #ffffff;
+  --ns-text: #0f172a;
+  --ns-muted: #475569;
+}
+
+/* Use NetSuite border tokens everywhere inside the dashboard */
+body.ns-layout .portlet{ border-color: var(--ns-border); }
+body.ns-layout .kpi{ border-color: var(--ns-border); }
+body.ns-layout .project-card{ border-color: var(--ns-border); }
+body.ns-layout .project-block{ border-color: color-mix(in oklab, var(--ns-border) 70%, transparent); }
+body.ns-layout .ns-table{ border-color: var(--ns-border); }
+body.ns-layout .ns-table thead{ border-bottom-color: var(--ns-border); }
+body.ns-layout .ns-table th, body.ns-layout .ns-table td{ border-right-color: color-mix(in oklab, var(--ns-border) 60%, transparent); }
+
+/* Make body text in dashboard consistent */
+body.ns-layout .portlet-title{ color: var(--ns-text); }
+body.ns-layout .summary{ color: #374151; }
+
+/* --- Mobile / small screens --- */
+@media (max-width: 1080px){
+  /* Sidebar becomes a horizontal block above content */
+  .ns-shell{ grid-template-columns: 1fr; }
+  .ns-sidebar{ position: static; }
+}
+
+@media (max-width: 720px){
+  /* Top navigation wraps instead of overflowing */
+  .ns-topbar-inner{ grid-template-columns: 1fr; gap: .5rem; }
+  .ns-nav{ flex-wrap: wrap; }
+  .ns-tab{ padding: .4rem .5rem; }
+
+  /* Reduce big banner search width so it fits phones */
+  .ns-banner-inner{ padding: .5rem .75rem; }
+  .banner-search input[type="search"]{ width: 100%; }
+
+  /* Profile: stack avatar above text for mobile */
+  .profile-wrap{ grid-template-columns: 1fr; }
+  .ns-profile .avatar{ margin-inline: auto; }
+  .ns-profile .profile-copy{ text-align: center; }
+  .ns-profile .summary-box{ width: 100%; }
+}
+
 /* ...existing code... */
+
+/* === Profile (legacy rules removed in favor of refined profile block) === */
+/* The styles below were previously used while iterating on widths and are now intentionally removed:
+   - .ns-profile .profile-copy width hacks
+   - duplicate .profile-wrap definitions
+   - earlier .ns-profile .summary-box sizing overrides
+*/
