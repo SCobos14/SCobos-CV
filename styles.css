@@ -150,21 +150,68 @@ html { scroll-behavior: smooth; }
 
 /* Make only the skills area gray */
 .skills li { 
-  padding: 0.9rem 1.1rem; 
+  padding: 0.5rem 0.7rem; 
   border: none;
-  border-radius: 0.8rem; 
+  border-radius: 0.5rem; 
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #ffffff;
   font-weight: 500;
+  font-size: 0.92rem;
   transition: transform .15s ease, box-shadow .2s ease, background .2s ease; 
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.18);
   cursor: default;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .skills li:hover { 
-  transform: translateY(-3px); 
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.22);
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
+
+/* Skills toggle button: make it more "click me" */
+#toggle-skills-btn{
+  position: relative;
+  float: right;
+  margin-top: -2px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 92, 255, 0.35);
+  background: linear-gradient(180deg, rgba(124, 92, 255, 0.14), rgba(124, 92, 255, 0.06));
+  color: #4338ca;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  box-shadow: 0 6px 14px rgba(124, 92, 255, 0.18);
+}
+#toggle-skills-btn::after{
+  content: '→';
+  display: inline-block;
+  margin-left: .5rem;
+  transform: translateX(0);
+  transition: transform .18s ease;
+}
+#toggle-skills-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(124, 92, 255, 0.65);
+  background: linear-gradient(180deg, rgba(124, 92, 255, 0.22), rgba(124, 92, 255, 0.10));
+  box-shadow: 0 10px 22px rgba(124, 92, 255, 0.25);
+}
+#toggle-skills-btn:hover::after{ transform: translateX(3px); }
+#toggle-skills-btn:active{ transform: translateY(0); box-shadow: 0 6px 14px rgba(124, 92, 255, 0.20); }
+
+@keyframes skillsToggleNudge{
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: no-preference){
+  #toggle-skills-btn{
+    animation: skillsToggleNudge 1.8s ease-in-out infinite;
+  }
+}
+
 /* Contact */
 .contact { display: grid; gap: .75rem; }
 .contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
@@ -238,8 +285,11 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
 .ns-profile{ grid-column: span 12; }
 #projects{ grid-column: span 12; }
 #experience{ grid-column: span 12; }
-#skills{ grid-column: span 6; }
-#education{ grid-column: span 6; }
+
+/* Full-width layout: Skills and Education stacked */
+#skills-toggle-box{ grid-column: span 12; }
+#education{ grid-column: span 12; }
+
 #contact{ grid-column: span 12; }
 
 .profile-wrap{ display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center; }
@@ -302,6 +352,17 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
   #skills, #education{ grid-column: span 1; }
 }
 
+/* Align Skills/Education content edge with the Experience table (70% width) */
+#skills-toggle-box .skills-switcher,
+#education .ns-list{
+  width: 70%;
+}
+@media (max-width: 1080px){
+  #skills-toggle-box .skills-switcher,
+  #education .ns-list{
+    width: 100%;
+  }
+}
 
 /* Clients carousel */
 .clients { padding: 2rem 0 3rem; }
