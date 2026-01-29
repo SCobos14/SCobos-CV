@@ -715,3 +715,51 @@ body.ns-layout .summary{ color: #374151; }
   /* If the banner is not useful on mobile for this CV, hide it entirely */
   .ns-banner{ display: none !important; }
 }
+
+/* Mobile: Licenses & certifications should not be constrained */
+@media (max-width: 720px){
+  #education .ns-list{ width: 100% !important; max-width: none !important; }
+
+  /* In case any wrapper/centering is applied, reset it */
+  #education .ns-list{ margin-left: 0 !important; margin-right: 0 !important; }
+  
+  /* Mobile: make the certification links fill the row (not shrink-to-content) */
+  #education .ns-list a.badge{
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    white-space: normal !important;
+    text-align: left;
+  }
+
+  /* Absolute override: make the whole licenses portlet span full width */
+  #education{
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    justify-self: stretch !important;
+    align-self: stretch !important;
+  }
+
+  #education *{ max-width: 100%; }
+}
+
+/* --- Mobile: force dashboard grid to a single column + full-width education --- */
+@media (max-width: 720px){
+  /* Some earlier rules set .ns-grid to 1 column at 1080px, but later rules re-define it.
+     Force it again for phones so portlets can't end up in half-width columns. */
+  .ns-grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Education / Licenses: remove any inherited inner-width “70% alignment” on mobile */
+  #education .ns-list{
+    width: 100% !important;
+  }
+
+  /* If the portlet itself is being sized by the grid, stretch it */
+  #education{
+    justify-self: stretch !important;
+    width: 100% !important;
+  }
+}
