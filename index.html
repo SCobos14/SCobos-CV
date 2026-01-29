@@ -241,6 +241,59 @@
           </ul>
         </div>
 
+        <!-- Clients (embedded) -->
+        <div class="portlet" id="clients">
+          <div class="portlet-title">Clients & Engagements</div>
+          <div class="muted" style="margin-bottom:.6rem;">Click a logo to open a popup with a short description of the work delivered.</div>
+
+          <section class="clients-grid" aria-label="Clients">
+            <button class="client-tile" data-key="Noventiq" aria-label="Noventiq">
+              <img src="images/clients/Noventiq.jpeg" alt="Noventiq logo" />
+              <span>Noventiq</span>
+            </button>
+            <button class="client-tile" data-key="BossInfo" aria-label="Boss Info">
+              <img src="images/clients/BossInfo.png" alt="Boss Info logo" />
+              <span>Boss Info</span>
+            </button>
+            <button class="client-tile" data-key="Wallbox" aria-label="Wallbox">
+              <img src="images/clients/Wallbox.png" alt="Wallbox logo" />
+              <span>Wallbox</span>
+            </button>
+            <button class="client-tile" data-key="Egonzehnder" aria-label="Egon Zehnder">
+              <img src="images/clients/Egonzehnder.png" alt="Egon Zehnder logo" />
+              <span>Egon Zehnder</span>
+            </button>
+            <button class="client-tile" data-key="Remira" aria-label="Remira">
+              <img src="images/clients/Remira.png" alt="Remira logo" />
+              <span>Remira</span>
+            </button>
+            <button class="client-tile" data-key="ActiveNutrition" aria-label="Active Nutrition">
+              <img src="images/clients/ActiveNutrition.png" alt="Active Nutrition logo" />
+              <span>Active Nutrition</span>
+            </button>
+            <button class="client-tile" data-key="Elli" aria-label="Elli">
+              <img src="images/clients/Elli.png" alt="Elli logo" />
+              <span>Elli</span>
+            </button>
+            <button class="client-tile" data-key="Pureon" aria-label="Pureon">
+              <img src="images/clients/Pureon.png" alt="Pureon logo" />
+              <span>Pureon</span>
+            </button>
+            <button class="client-tile" data-key="Vigience" aria-label="Vigience">
+              <img src="images/clients/Vigience.png" alt="Vigience logo" />
+              <span>Vigience</span>
+            </button>
+            <button class="client-tile" data-key="Doodle" aria-label="Doodle">
+              <img src="images/clients/Doodle.png" alt="Doodle logo" />
+              <span>Doodle</span>
+            </button>
+            <button class="client-tile" data-key="Purple" aria-label="Purple">
+              <img src="images/clients/Purple.jpg" alt="Purple logo" />
+              <span>Purple</span>
+            </button>
+          </section>
+        </div>
+
         <div class="portlet" id="contact">
           <div class="portlet-title">Contact</div>
           <div class="contact-actions">
@@ -263,51 +316,231 @@
     </div>
   </footer>
 
+  <div id="client-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close" aria-label="Close" data-close>&times;</button>
+
+      <!-- Compact header with logo + title -->
+      <div class="modal-header">
+        <div class="modal-client">
+          <img id="modal-logo" class="modal-logo" alt="" />
+          <div class="modal-client-text">
+            <h2 id="modal-title">Client</h2>
+            <div id="modal-subtitle" class="muted">Engagement</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel / slides -->
+      <div class="modal-body">
+        <div class="modal-carousel" aria-label="Case study carousel">
+          <button class="carousel-btn prev" type="button" aria-label="Previous" data-carousel-prev>&lsaquo;</button>
+
+          <div class="carousel-viewport">
+            <div id="modal-slides" class="carousel-track"></div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next" data-carousel-next>&rsaquo;</button>
+        </div>
+
+        <div id="modal-dots" class="carousel-dots" aria-label="Slides"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const el = document.getElementById('year');
     if (el) el.textContent = new Date().getFullYear();
 
-    const clientDescriptions = {
+    // Embedded clients modal logic
+    const clientDescriptionsEmbedded = {
       Noventiq: {
-        title: 'Noventiq — NetSuite × Dow Jones',
-        text: 'Designed and delivered a certified integration with Dow Jones Screening & Monitoring API to automatically validate customer risk before transactions in NetSuite.'
+        title: 'Dow Jones – NetSuite Integration',
+        subtitle: 'Compliance screening integration (case study)',
+        logo: 'images/clients/Noventiq.jpeg',
+        slides: [
+          {
+            label: 'Context',
+            html: `
+              <p>Noventiq required an integration with Dow Jones to validate customers against risk lists before processing transactions.</p>
+              <p class="muted">Goal: ensure compliance with internal policies and regulatory requirements before transactions are processed.</p>
+            `.trim()
+          },
+          {
+            label: 'Complexity',
+            html: `
+              <p>The integration required a full end-to-end architecture from scratch:</p>
+              <ul class="list">
+                <li>Connect NetSuite with Dow Jones Screening &amp; Monitoring API (no prior connector existed).</li>
+                <li>Match large customer datasets against global risk lists.</li>
+                <li>Flag / inactivate customers automatically on sanctions or risk detection.</li>
+                <li>Operate reliably alongside other integrations while maintaining performance &amp; scalability.</li>
+              </ul>
+            `.trim()
+          },
+          {
+            label: 'Role',
+            html: `
+              <p><strong>Solution Architect</strong> responsible for the full design and delivery.</p>
+              <p class="muted">Worked with a compliance expert to translate regulatory requirements into a scalable technical solution.</p>
+            `.trim()
+          },
+          {
+            label: 'Outcome',
+            html: `
+              <p>Delivered a fully operational integration aligned with best practices and SDLC.</p>
+              <p class="muted">Architecture certified by Dow Jones after multiple demos, ensuring compliant data exchange.</p>
+            `.trim()
+          },
+          {
+            label: 'Tech Stack',
+            html: `
+              <p class="muted">NetSuite · SuiteScript · NetSuite API · Dow Jones Screening &amp; Monitoring API</p>
+              <p class="muted">Compliance &amp; Risk Management</p>
+            `.trim()
+          }
+        ]
       },
+
       BossInfo: {
         title: 'Boss Info — NetSuite Enablement',
+        subtitle: 'SuiteScript & process automation',
+        logo: 'images/clients/BossInfo.png',
         text: 'SuiteScript components and process automation to streamline daily operations. (Details TBD)'
       },
       Wallbox: {
         title: 'Wallbox — Integration Support',
+        subtitle: 'Integration patterns & data flows',
+        logo: 'images/clients/Wallbox.png',
         text: 'NetSuite integration patterns and data flows. (Details TBD)'
       },
       Egonzehnder: {
         title: 'Egon Zehnder — Process Automation',
+        subtitle: 'Automation & SuiteScript utilities',
+        logo: 'images/clients/Egonzehnder.png',
         text: 'Automation and SuiteScript utilities. (Details TBD)'
       },
-      Remira: { title: 'Remira', text: 'Integration and SuiteScript tasks. (Details TBD)' },
-      ActiveNutrition: { title: 'Active Nutrition', text: 'Operational dashboards and scripts. (Details TBD)' },
-      Elli: { title: 'Elli', text: 'NetSuite workflows and APIs. (Details TBD)' },
-      Pureon: { title: 'Pureon', text: 'Data integration and reporting. (Details TBD)' },
-      Vigience: { title: 'Vigience', text: 'SuiteScript customization. (Details TBD)' },
-      Doodle: { title: 'Doodle', text: 'Automation helpers. (Details TBD)' },
-      Purple: { title: 'Purple', text: 'Process improvements. (Details TBD)' }
+      Remira: { title: 'Remira', subtitle: 'SuiteScript & integrations', logo: 'images/clients/Remira.png', text: 'Integration and SuiteScript tasks. (Details TBD)' },
+      ActiveNutrition: { title: 'Active Nutrition', subtitle: 'Dashboards & scripts', logo: 'images/clients/ActiveNutrition.png', text: 'Operational dashboards and scripts. (Details TBD)' },
+      Elli: { title: 'Elli', subtitle: 'Workflows & APIs', logo: 'images/clients/Elli.png', text: 'NetSuite workflows and APIs. (Details TBD)' },
+      Pureon: { title: 'Pureon', subtitle: 'Data integration & reporting', logo: 'images/clients/Pureon.png', text: 'Data integration and reporting. (Details TBD)' },
+      Vigience: { title: 'Vigience', subtitle: 'Customization', logo: 'images/clients/Vigience.png', text: 'SuiteScript customization. (Details TBD)' },
+      Doodle: { title: 'Doodle', subtitle: 'Automation', logo: 'images/clients/Doodle.png', text: 'Automation helpers. (Details TBD)' },
+      Purple: { title: 'Purple', subtitle: 'Process improvements', logo: 'images/clients/Purple.jpg', text: 'Process improvements. (Details TBD)' }
     };
 
-    const carousel = document.querySelector('.clients-carousel');
-    const titleEl = document.getElementById('client-title');
-    const textEl = document.getElementById('client-text');
-    if (carousel) {
-      carousel.addEventListener('click', (e) => {
-        const btn = e.target.closest('.client-logo');
+    const clientsPortlet = document.getElementById('clients');
+    const clientModal = document.getElementById('client-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalSlides = document.getElementById('modal-slides');
+    const modalDots = document.getElementById('modal-dots');
+    const modalLogo = document.getElementById('modal-logo');
+
+    let currentSlideIndex = 0;
+
+    function openClientModal() {
+      if (!clientModal) return;
+      clientModal.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => clientModal.classList.add('is-open'));
+    }
+    function closeClientModal() {
+      if (!clientModal) return;
+      clientModal.classList.remove('is-open');
+      clientModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function setCarouselIndex(nextIndex) {
+      if (!modalSlides) return;
+      const slides = Array.from(modalSlides.children);
+      if (!slides.length) return;
+      const clamped = Math.max(0, Math.min(nextIndex, slides.length - 1));
+      currentSlideIndex = clamped;
+      modalSlides.style.transform = `translateX(${-clamped * 100}%)`;
+
+      if (modalDots) {
+        const dots = Array.from(modalDots.querySelectorAll('button'));
+        dots.forEach((d, idx) => d.setAttribute('aria-current', idx === clamped ? 'true' : 'false'));
+      }
+    }
+
+    function renderSlidesForClient(data) {
+      if (!modalSlides || !modalDots) return;
+      modalSlides.innerHTML = '';
+      modalDots.innerHTML = '';
+      currentSlideIndex = 0;
+
+      const slides = (data && data.slides && Array.isArray(data.slides) && data.slides.length)
+        ? data.slides
+        : [{ label: 'Summary', html: `<p class="muted">${(data && data.text) ? data.text : ''}</p>` }];
+
+      slides.forEach((s, idx) => {
+        const slide = document.createElement('section');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `
+          <div class="slide-head">
+            <div class="slide-pill">${s.label || `Slide ${idx + 1}`}</div>
+          </div>
+          <div class="slide-body">${s.html || ''}</div>
+        `.trim();
+        modalSlides.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to ${s.label || `slide ${idx + 1}`}`);
+        dot.addEventListener('click', () => setCarouselIndex(idx));
+        modalDots.appendChild(dot);
+      });
+
+      setCarouselIndex(0);
+    }
+
+    if (clientsPortlet && clientModal && modalTitle && modalSubtitle && modalSlides && modalDots && modalLogo) {
+      clientsPortlet.addEventListener('click', (e) => {
+        const btn = e.target.closest('.client-tile');
         if (!btn) return;
         const key = btn.getAttribute('data-key');
-        const data = clientDescriptions[key];
+        const data = clientDescriptionsEmbedded[key];
         if (data) {
-          titleEl.textContent = data.title;
-          textEl.textContent = data.text;
+          modalTitle.textContent = data.title;
+          modalSubtitle.textContent = data.subtitle || '';
+
+          if (data.logo) {
+            modalLogo.src = data.logo;
+            modalLogo.alt = `${key} logo`;
+            modalLogo.style.display = '';
+          } else {
+            modalLogo.removeAttribute('src');
+            modalLogo.alt = '';
+            modalLogo.style.display = 'none';
+          }
+
+          renderSlidesForClient(data);
         }
-        carousel.querySelectorAll('.client-logo').forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
+        openClientModal();
+      });
+
+      clientModal.addEventListener('click', (e) => {
+        if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-close')) closeClientModal();
+      });
+
+      // Carousel controls
+      clientModal.addEventListener('click', (e) => {
+        const t = e.target;
+        if (!t || !t.hasAttribute) return;
+        if (t.hasAttribute('data-carousel-prev')) setCarouselIndex(currentSlideIndex - 1);
+        if (t.hasAttribute('data-carousel-next')) setCarouselIndex(currentSlideIndex + 1);
+      });
+
+      // Keyboard controls
+      window.addEventListener('keydown', (e) => {
+        if (!clientModal || clientModal.getAttribute('aria-hidden') === 'true') return;
+        if (e.key === 'Escape') closeClientModal();
+        if (e.key === 'ArrowLeft') setCarouselIndex(currentSlideIndex - 1);
+        if (e.key === 'ArrowRight') setCarouselIndex(currentSlideIndex + 1);
       });
     }
 

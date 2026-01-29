@@ -285,6 +285,7 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
 .ns-profile{ grid-column: span 12; }
 #projects{ grid-column: span 12; }
 #experience{ grid-column: span 12; }
+#clients{ grid-column: span 12; }
 
 /* Full-width layout: Skills and Education stacked */
 #skills-toggle-box{ grid-column: span 12; }
@@ -777,4 +778,248 @@ body.ns-layout .summary{ color: #374151; }
 }
 .skills li:hover{
   opacity: .88;
+}
+
+/* Clients (embedded): make logo tiles visually consistent */
+.client-tile{
+  min-height: 140px;
+  padding: .85rem;
+}
+
+/* Fix a consistent logo box so different aspect ratios look aligned */
+.client-tile img{
+  width: 100%;
+  height: 72px;
+  max-width: 160px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Hide the caption (client name) under the image */
+.client-tile span{
+  display: none;
+}
+
+/* === Clients modal: prettified case study rendering === */
+.modal-content{
+  overflow: hidden; /* keeps header border radius clean */
+}
+
+.modal-body{
+  padding: 1.1rem 1.3rem 1.25rem;
+}
+
+.modal-body h2{
+  margin: .15rem 0 .6rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: .2px;
+  color: #0f172a;
+}
+
+/* Rich HTML is injected inside #modal-text. Make it read like a case study. */
+#modal-text{
+  color: #334155;
+  line-height: 1.65;
+}
+#modal-text p{ margin: .55rem 0; }
+#modal-text p.muted{ color: #64748b; }
+#modal-text strong{ color: #0f172a; }
+
+#modal-text h3{
+  margin: 1rem 0 .35rem;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+#modal-text ul.list{
+  margin: .35rem 0 .75rem;
+  padding-left: 1.1rem;
+}
+#modal-text ul.list li{ margin: .3rem 0; }
+
+/* Subtle divider between sections (applies when you add more content later) */
+#modal-text h3 + p,
+#modal-text h3 + ul{
+  padding-top: .1rem;
+}
+
+/* Nicer close button */
+.modal-close{
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: .55rem;
+  color: #475569;
+}
+.modal-close:hover{
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Keep modal readable on small screens */
+@media (max-width: 720px){
+  .modal-content{ width: min(720px, 94%); }
+  .modal-body{ padding: .95rem 1rem 1.05rem; }
+  .modal-body h2{ font-size: 1.15rem; }
+}
+
+/* === Compact client modal + carousel (index.html embedded) === */
+.modal{
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.modal.is-open{ opacity: 1; }
+
+.modal-content{
+  width: min(760px, 92%);
+  max-height: min(70vh, 560px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.modal-header{
+  padding: .9rem 1.1rem .75rem;
+  border-bottom: 1px solid var(--ns-border);
+  background: linear-gradient(180deg, #ffffff, #fbfcff);
+}
+
+.modal-client{
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: .75rem;
+  align-items: center;
+}
+
+.modal-logo{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--ns-border);
+  border-radius: .75rem;
+  padding: .35rem;
+}
+
+.modal-client-text h2{
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.modal-client-text .muted{
+  margin-top: .15rem;
+  color: #64748b;
+  font-size: .92rem;
+}
+
+/* Carousel layout */
+.modal-body{
+  padding: .85rem 1.1rem 1rem;
+  overflow: hidden;
+}
+
+.modal-carousel{
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  gap: .6rem;
+  align-items: center;
+}
+
+.carousel-btn{
+  width: 40px;
+  height: 40px;
+  border-radius: .75rem;
+  border: 1px solid var(--ns-border);
+  background: #ffffff;
+  color: #334155;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.carousel-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(15,23,42,.10);
+  border-color: #cbd5e1;
+}
+
+.carousel-viewport{
+  overflow: hidden;
+  border: 1px solid var(--ns-border);
+  border-radius: .85rem;
+  background: linear-gradient(180deg, #ffffff, #fafbff);
+}
+
+.carousel-track{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  transition: transform .32s ease;
+  will-change: transform;
+}
+
+.carousel-slide{
+  padding: .9rem 1rem 1rem;
+  min-height: 220px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.slide-head{ display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
+.slide-pill{
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  font-weight: 800;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.slide-body{
+  overflow: auto;
+  padding-right: .25rem;
+  color: #334155;
+  line-height: 1.65;
+}
+.slide-body p{ margin: .55rem 0; }
+.slide-body .muted{ color: #64748b; }
+.slide-body ul.list{ margin: .35rem 0 .75rem; padding-left: 1.1rem; }
+.slide-body ul.list li{ margin: .3rem 0; }
+
+.carousel-dots{
+  display: flex;
+  justify-content: center;
+  gap: .35rem;
+  margin-top: .65rem;
+}
+.carousel-dots button{
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #e2e8f0;
+  cursor: pointer;
+}
+.carousel-dots button[aria-current="true"]{
+  background: #7c5cff;
+  border-color: #7c5cff;
+}
+
+@media (max-width: 720px){
+  .modal-content{ width: min(760px, 94%); max-height: 76vh; }
+  .modal-client{ grid-template-columns: 48px 1fr; }
+  .modal-logo{ width: 48px; height: 48px; border-radius: .65rem; }
+  .modal-carousel{ grid-template-columns: 36px 1fr 36px; }
+  .carousel-btn{ width: 36px; height: 36px; border-radius: .65rem; }
+  .carousel-slide{ min-height: 200px; }
 }
