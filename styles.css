@@ -763,3 +763,18 @@ body.ns-layout .summary{ color: #374151; }
     width: 100% !important;
   }
 }
+
+/* Skills hover: remove gradient animation, use simple fade (do NOT touch the toggle button) */
+.skills li::before,
+.skills li::after{
+  transition: none !important;
+}
+
+/* Make sure only the chip itself fades in/out */
+.skills li{
+  transition: opacity .18s ease, transform .15s ease, box-shadow .2s ease !important;
+  opacity: 1;
+}
+.skills li:hover{
+  opacity: .88;
+}
