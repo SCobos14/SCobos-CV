@@ -27,12 +27,61 @@ html { font-size: var(--base-font); }
 
 
 /* Clients page: large grid */
-.clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
-.client-tile { display: grid; justify-items: center; align-content: center; gap: .5rem; min-height: 180px; padding: 1rem; background: #ffffff; border: 1px solid var(--ns-border); border-radius: .75rem; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease; }
-.client-tile img { max-height: 100px; width: auto; object-fit: contain; }
-.client-tile span { font-weight: 700; color: #0f172a; }
-.client-tile:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15,23,42,.08); border-color: #cbd5e1; }
-.client-tile:focus-visible { outline: 3px solid #7c5cff; outline-offset: 3px; }
+.clients-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: .9rem;
+}
+.client-tile{
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: .55rem;
+
+  min-height: 156px;   /* was 140px */
+  padding: 1rem;       /* was .85rem */
+
+  border: 1px solid var(--ns-border);
+  border-radius: 14px;
+
+  /* keep tile clean; do NOT add a logo background box */
+  background: transparent;
+}
+
+/* If some tiles are <button>, remove default button styling */
+button.client-tile{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--ns-border);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* The key part: every logo gets the same bounding box and centers evenly */
+.client-tile img{
+  height: 80px;        /* was 72px */
+  width: min(190px, 100%); /* was 170px */
+  object-fit: contain;       /* keep aspect ratio */
+  object-position: center;
+  display: block;
+
+  /* remove any "boxed" feel */
+  background: transparent;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Optional: keep captions hidden on the CV home page, but show on clients.html if you want */
+.client-tile span{ display: none !important; }
+#clients-page .client-tile span{
+  display: block;
+  font-size: .9rem;
+  font-weight: 700;
+  color: #334155;
+  text-align: center;
+}
 
 /* Modal */
 .modal[aria-hidden="true"] { display: none; }
@@ -782,22 +831,19 @@ body.ns-layout .summary{ color: #374151; }
 
 /* Clients (embedded): make logo tiles visually consistent */
 .client-tile{
-  min-height: 140px;
-  padding: .85rem;
+  min-height: 156px;   /* was 140px */
+  padding: 1rem;       /* was .85rem */
 }
 
 /* Fix a consistent logo box so different aspect ratios look aligned */
 .client-tile img{
-  width: 100%;
-  height: 72px;
-  max-width: 160px;
-  object-fit: contain;
-  object-position: center;
+  height: 80px;        /* was 72px */
+  width: min(190px, 100%); /* was 170px */
 }
 
 /* Hide the caption (client name) under the image */
 .client-tile span{
-  display: none;
+  display: none !important;
 }
 
 /* === Clients modal: prettified case study rendering === */
