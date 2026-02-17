@@ -4,18 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Clients & Engagements · Samuel Cobos</title>
-  <meta name="description" content="Clients and engagements of Samuel Cobos Hurtado. Click a logo to view a description of the work delivered." />
-  <link rel="stylesheet" href="./styles.css" />
+  <title>Clients & Engagements · Samuel Cobos Hurtado</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body class="ns-layout">
   <header class="ns-topbar" role="banner">
+    <!-- UPDATED: Banner now matches index/client-noventiq (images + search + help + feedback + user) -->
+    <div class="ns-banner" role="img" aria-label="Top banner with logos, search and user">
+      <div class="ns-banner-inner">
+        <div class="banner-images" aria-hidden="false">
+          <img class="banner-img" src="images/sf.png" alt="Brand logo 2"
+            style="width:200px;height:auto;margin-left:20px;" />
+        </div>
+
+        <div class="banner-divider"></div>
+
+        <div class="banner-search">
+          <input type="search" placeholder="Search" aria-label="Top banner search" readonly aria-readonly="true"
+            class="banner-search-input" />
+        </div>
+
+        <div class="banner-spacer"></div>
+
+        <div class="banner-user" aria-label="Help">
+          <img class="banner-icon" src="images/question.png" alt="Help" aria-hidden="true"
+            style="width: 20px; height: 20px;" />
+          <span class="banner-name">Help</span>
+        </div>
+
+        <div class="banner-user" aria-label="Feedback">
+          <img class="banner-icon" src="images/threedots.svg" alt="Feedback" aria-hidden="true"
+            style="width: 20px; height: 20px;" />
+          <span class="banner-name">Feedback</span>
+        </div>
+
+        <div class="banner-user" aria-label="User">
+          <img class="banner-icon" src="images/people.png" alt="User" aria-hidden="true"
+            style="width: 30px; height: 30px;" />
+          <span class="banner-name">
+            <span class="banner-name-line">Samuel Cobos Hurtado</span>
+            <span class="banner-role">Administrator</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
     <div class="ns-topbar-inner">
       <div class="ns-brand">
-        <a class="ns-logo" href="./index.html" style="color:inherit;text-decoration:none">CV Suite</a>
+        <span class="ns-logo">CV Suite</span>
         <span class="ns-divider">·</span>
-        <span class="ns-user">Clients</span>
+        <span class="ns-user">Samuel Cobos Hurtado</span>
       </div>
+
       <nav class="ns-nav" aria-label="Primary">
         <a href="./index.html#home" class="ns-tab">Home</a>
         <a href="./index.html#experience" class="ns-tab">Experience</a>
@@ -25,133 +66,83 @@
         <a href="./index.html#contact" class="ns-tab">Contact</a>
         <a href="./clients.html" class="ns-tab is-active">Clients</a>
       </nav>
-      <div class="ns-search">
-        <input type="search" placeholder="Search clients..." aria-label="Search clients" />
-      </div>
     </div>
   </header>
 
-  <main class="container" style="padding:1rem 1rem 3rem">
-    <h1 class="section-title" style="margin-top:1rem">Clients & Engagements</h1>
-    <p class="muted">Click a logo to open a popup with a short description of the work delivered.</p>
-
-    <section class="clients-grid">
-      <button class="client-tile" data-key="Noventiq" aria-label="Noventiq">
-        <img src="images/clients/Noventiq.jpeg" alt="Noventiq logo" />
-        <span>Noventiq</span>
-      </button>
-      <button class="client-tile" data-key="BossInfo" aria-label="Boss Info">
-        <img src="images/clients/BossInfo.png" alt="Boss Info logo" />
-        <span>Boss Info</span>
-      </button>
-      <button class="client-tile" data-key="Wallbox" aria-label="Wallbox">
-        <img src="images/clients/Wallbox.png" alt="Wallbox logo" />
-        <span>Wallbox</span>
-      </button>
-      <button class="client-tile" data-key="Egonzehnder" aria-label="Egon Zehnder">
-        <img src="images/clients/Egonzehnder.png" alt="Egon Zehnder logo" />
-        <span>Egon Zehnder</span>
-      </button>
-      <button class="client-tile" data-key="Remira" aria-label="Remira">
-        <img src="images/clients/Remira.png" alt="Remira logo" />
-        <span>Remira</span>
-      </button>
-      <button class="client-tile" data-key="ActiveNutrition" aria-label="Active Nutrition">
-        <img src="images/clients/ActiveNutrition.png" alt="Active Nutrition logo" />
-        <span>Active Nutrition</span>
-      </button>
-      <button class="client-tile" data-key="Elli" aria-label="Elli">
-        <img src="images/clients/Elli.png" alt="Elli logo" />
-        <span>Elli</span>
-      </button>
-      <button class="client-tile" data-key="Pureon" aria-label="Pureon">
-        <img src="images/clients/Pureon.png" alt="Pureon logo" />
-        <span>Pureon</span>
-      </button>
-      <button class="client-tile" data-key="Vigience" aria-label="Vigience">
-        <img src="images/clients/Vigience.png" alt="Vigience logo" />
-        <span>Vigience</span>
-      </button>
-      <button class="client-tile" data-key="Doodle" aria-label="Doodle">
-        <img src="images/clients/Doodle.png" alt="Doodle logo" />
-        <span>Doodle</span>
-      </button>
-      <button class="client-tile" data-key="Purple" aria-label="Purple">
-        <img src="images/clients/Purple.jpg" alt="Purple logo" />
-        <span>Purple</span>
-      </button>
-    </section>
-  </main>
-
-  <div id="client-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-content" role="document">
-      <button class="modal-close" aria-label="Close" data-close>×</button>
-      <div class="modal-body">
-        <h2 id="modal-title">Client</h2>
-        <p id="modal-text" class="muted">Description</p>
+  <div class="ns-shell">
+    <!-- Sidebar kept for layout consistency (we can later customize it for clients) -->
+    <aside class="ns-sidebar" aria-label="Sidebar">
+      <div class="portlet">
+        <div class="portlet-title">Quick Links</div>
+        <ul class="ns-list">
+          <li><a href="./index.html#home" class="badge">Back to CV</a></li>
+          <li><a href="files/cv.pdf" target="_blank" rel="noopener" class="badge">Download CV</a></li>
+          <li><a href="https://www.linkedin.com/in/samuel-cobos-hurtado-8182a4145/" target="_blank" rel="noopener" class="badge">LinkedIn</a></li>
+        </ul>
       </div>
-    </div>
+    </aside>
+
+    <main class="ns-main" role="main">
+      <section class="ns-grid">
+        <!-- This is the "replace all boxes" area -->
+        <div class="portlet" id="clients-page">
+          <div class="portlet-title">Clients & Engagements</div>
+          <p class="muted" style="margin: 0 0 .75rem;">
+            Select a client to open a dedicated details page (next step).
+          </p>
+
+          <!-- Starting point: show all logos (same images you already use) -->
+          <section class="clients-grid" aria-label="Clients">
+            <a class="client-tile" href="./client-noventiq.html" aria-label="Noventiq">
+              <img src="images/clients/Noventiq.jpeg" alt="Noventiq logo" />
+              <span>Noventiq</span>
+            </a>
+
+            <button class="client-tile" type="button" data-key="BossInfo" aria-label="Boss Info">
+              <img src="images/clients/BossInfo.png" alt="Boss Info logo" />
+              <span>Boss Info</span>
+            </button>
+            <a class="client-tile" href="./client-wallbox.html" aria-label="Wallbox">
+              <img src="images/clients/Wallbox.png" alt="Wallbox logo" />
+              <span>Wallbox</span>
+            </a>
+            <a class="client-tile" href="./client-egonzehnder.html" aria-label="Egon Zehnder">
+              <img src="images/clients/Egonzehnder.png" alt="Egon Zehnder logo" />
+              <span>Egon Zehnder</span>
+            </a>
+
+            <a class="client-tile" href="./client-remira.html" aria-label="Remira">
+              <img src="images/clients/Remira.png" alt="Remira logo" />
+              <span>Remira</span>
+            </a>
+            <a class="client-tile" href="./client-activenutrition.html" aria-label="Active Nutrition">
+              <img src="images/clients/ActiveNutrition.png" alt="Active Nutrition logo" />
+              <span>Active Nutrition</span>
+            </a>
+            <a class="client-tile" href="./client-elli.html" aria-label="Elli">
+              <img src="images/clients/Elli.png" alt="Elli logo" />
+              <span>Elli</span>
+            </a>
+            <a class="client-tile" href="./client-pureon.html" aria-label="Pureon">
+              <img src="images/clients/Pureon.png" alt="Pureon logo" />
+              <span>Pureon</span>
+            </a>
+            <a class="client-tile" href="./client-vigience.html" aria-label="Vigience">
+              <img src="images/clients/Vigience.png" alt="Vigience logo" />
+              <span>Vigience</span>
+            </a>
+            <a class="client-tile" href="./client-doodle.html" aria-label="Doodle">
+              <img src="images/clients/Doodle.png" alt="Doodle logo" />
+              <span>Doodle</span>
+            </a>
+            <a class="client-tile" href="./client-purple.html" aria-label="Purple">
+              <img src="images/clients/Purple.jpg" alt="Purple logo" />
+              <span>Purple</span>
+            </a>
+          </section>
+        </div>
+      </section>
+    </main>
   </div>
-
-  <script>
-    const descriptions = {
-      Noventiq: {
-        title: 'Noventiq — NetSuite × Dow Jones',
-        text: 'Certified integration with Dow Jones Screening & Monitoring API: automated customer risk validation before transaction processing in NetSuite.'
-      },
-      BossInfo: {
-        title: 'Boss Info — NetSuite Enablement',
-        text: 'SuiteScript components and process automation to streamline daily operations. (Details TBD)'
-      },
-      Wallbox: {
-        title: 'Wallbox — Integration Support',
-        text: 'NetSuite integration patterns and data flows. (Details TBD)'
-      },
-      Egonzehnder: {
-        title: 'Egon Zehnder — Process Automation',
-        text: 'Automation and SuiteScript utilities. (Details TBD)'
-      },
-      Remira: { title: 'Remira', text: 'Integration and SuiteScript tasks. (Details TBD)' },
-      ActiveNutrition: { title: 'Active Nutrition', text: 'Operational dashboards and scripts. (Details TBD)' },
-      Elli: { title: 'Elli', text: 'NetSuite workflows and APIs. (Details TBD)' },
-      Pureon: { title: 'Pureon', text: 'Data integration and reporting. (Details TBD)' },
-      Vigience: { title: 'Vigience', text: 'SuiteScript customization. (Details TBD)' },
-      Doodle: { title: 'Doodle', text: 'Automation helpers. (Details TBD)' },
-      Purple: { title: 'Purple', text: 'Process improvements. (Details TBD)' }
-    };
-
-    const grid = document.querySelector('.clients-grid');
-    const modal = document.getElementById('client-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalText = document.getElementById('modal-text');
-
-    function openModal() {
-      modal.removeAttribute('aria-hidden');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    grid.addEventListener('click', (e) => {
-      const btn = e.target.closest('.client-tile');
-      if (!btn) return;
-      const key = btn.getAttribute('data-key');
-      const data = descriptions[key];
-      if (data) {
-        modalTitle.textContent = data.title;
-        modalText.textContent = data.text;
-      }
-      openModal();
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target.hasAttribute('data-close')) closeModal();
-      if (e.target === modal) closeModal();
-    });
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-  </script>
 </body>
 </html>

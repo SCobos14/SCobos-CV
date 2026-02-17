@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Noventiq · Clients · Samuel Cobos Hurtado</title>
+  <meta name="description" content="Noventiq engagement: Dow Jones – NetSuite Integration." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body class="ns-layout">
+  <!-- Top part copied to match index.html/clients.html -->
+  <header class="ns-topbar" role="banner">
+    <div class="ns-banner" role="img" aria-label="Top banner with logos, search and user">
+      <div class="ns-banner-inner">
+        <div class="banner-images" aria-hidden="false">
+          <img class="banner-img" src="images/sf.png" alt="Brand logo 2" style="width:200px;height:auto;margin-left:20px;" />
+        </div>
+
+        <div class="banner-divider"></div>
+
+        <div class="banner-search">
+          <input type="search" placeholder="Search" aria-label="Top banner search" readonly aria-readonly="true"
+            class="banner-search-input" />
+        </div>
+
+        <div class="banner-spacer"></div>
+
+        <div class="banner-user" aria-label="User">
+          <img class="banner-icon" src="images/question.png" alt="Help" aria-hidden="true" style="width: 20px; height: 20px;" />
+          <span class="banner-name">Help</span>
+        </div>
+
+        <div class="banner-user" aria-label="User">
+          <img class="banner-icon" src="images/threedots.svg" alt="Help" aria-hidden="true" style="width: 20px; height: 20px;" />
+          <span class="banner-name">Feedback</span>
+        </div>
+
+        <div class="banner-user" aria-label="User">
+          <img class="banner-icon" src="images/people.png" alt="Help" aria-hidden="true" style="width: 30px; height: 30px;" />
+          <span class="banner-name">
+            <span class="banner-name-line">Samuel Cobos Hurtado</span>
+            <span class="banner-role">Administrator</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ns-topbar-inner">
+      <div class="ns-brand">
+        <span class="ns-logo">CV Suite</span>
+        <span class="ns-divider">·</span>
+        <span class="ns-user">Samuel Cobos Hurtado</span>
+      </div>
+
+      <nav class="ns-nav" aria-label="Primary">
+        <a href="./index.html#home" class="ns-tab">Home</a>
+        <a href="./index.html#experience" class="ns-tab">Experience</a>
+        <a href="./index.html#projects" class="ns-tab">Projects</a>
+        <a href="./index.html#skills" class="ns-tab">Skills</a>
+        <a href="./index.html#education" class="ns-tab">Education</a>
+        <a href="./index.html#contact" class="ns-tab">Contact</a>
+        <a href="./clients.html" class="ns-tab is-active">Clients</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="ns-shell">
+    <!-- Keep same sidebar (identical feel) -->
+    <aside class="ns-sidebar" aria-label="Sidebar">
+      <div class="portlet">
+        <div class="portlet-title">KPI Meter</div>
+        <div class="kpis">
+          <div class="kpi"><span class="kpi-value">9+</span><span class="kpi-label">Years</span></div>
+          <div class="kpi"><span class="kpi-value">20+</span><span class="kpi-label">Projects</span></div>
+          <div class="kpi"><span class="kpi-value">2</span><span class="kpi-label">Certs</span></div>
+        </div>
+      </div>
+
+      <div class="portlet">
+        <div class="portlet-title">Recent Records</div>
+        <ul class="ns-list">
+          <li><a href="files/cv.pdf" target="_blank" rel="noopener" class="badge">CV</a></li>
+          <li><a href="https://www.linkedin.com/in/samuel-cobos-hurtado-8182a4145/" target="_blank" rel="noopener"
+              class="badge">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <div class="portlet">
+        <div class="portlet-title">Navigation</div>
+        <ul class="ns-list">
+          <li><a href="./clients.html" class="badge">← Back to Clients</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main id="home" class="ns-main" role="main">
+      <section class="ns-grid">
+        <article class="portlet" id="client-detail-page">
+          <div class="portlet-title">Client engagement</div>
+
+          <header class="client-detail-head" style="margin-top:.25rem;">
+            <div class="client-detail-title">
+              <img class="client-detail-logo" src="images/clients/Noventiq.jpeg" alt="Noventiq logo" />
+              <div>
+                <h3 style="margin:0; color:#0f172a;">Dow Jones – NetSuite Integration</h3>
+                <p class="muted" style="margin:.15rem 0 0;">Customer: Noventiq</p>
+              </div>
+            </div>
+
+            <a class="btn btn-ghost" href="./clients.html" aria-label="Back to clients">← Back to clients</a>
+          </header>
+
+          <div class="client-detail-desc">
+            <h4>Context</h4>
+            <p>
+              Noventiq required an integration with Dow Jones to validate customers against risk lists before processing transactions.
+              Designed a custom integration between NetSuite and Dow Jones’ Screening &amp; Monitoring API to retrieve risk data and
+              match it against customer records, ensuring compliance with internal policies and regulatory requirements.
+            </p>
+
+            <h4>Complexity</h4>
+            <p>The integration involved building a robust end-to-end architecture from scratch, including:</p>
+            <ul>
+              <li>Connecting NetSuite with Dow Jones Screening &amp; Monitoring API (no prior connector existed).</li>
+              <li>Matching large volumes of customer data against global risk lists.</li>
+              <li>Automatically flagging or inactivating customers in NetSuite if sanctions or risks were detected.</li>
+              <li>Ensuring the solution operated alongside other integrations while maintaining performance and scalability.</li>
+            </ul>
+
+            <h4>Role</h4>
+            <p>
+              <strong>Solution Architect</strong> responsible for the full design and delivery, collaborating with a compliance expert
+              to translate regulatory requirements into a scalable technical solution.
+            </p>
+
+            <h4>Outcome</h4>
+            <p>
+              Successfully delivered a fully operational integration following best practices and the software development lifecycle.
+              Architecture was certified by Dow Jones after multiple demos, ensuring smooth and compliant data exchange between systems.
+            </p>
+
+            <h4>Tech Stack</h4>
+            <p class="muted">NetSuite · SuiteScript · NetSuite API · Dow Jones Screening &amp; Monitoring API · Compliance &amp; Risk Management</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

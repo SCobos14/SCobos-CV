@@ -1023,3 +1023,602 @@ body.ns-layout .summary{ color: #374151; }
   .carousel-btn{ width: 36px; height: 36px; border-radius: .65rem; }
   .carousel-slide{ min-height: 200px; }
 }
+
+/* === FINAL OVERRIDES: Clients modal typography (make it actually readable) === */
+/* Put this at the very end of the file so it wins against earlier duplicate modal rules. */
+
+#client-modal.modal{
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+#client-modal.modal.is-open{ opacity: 1; }
+
+/* Keep modal compact, but comfortable */
+#client-modal .modal-content{
+  width: min(860px, calc(100vw - 2rem));
+  max-height: min(72vh, 610px);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* Header polish */
+#client-modal .modal-header{
+  padding: .95rem 1.15rem .8rem;
+  border-bottom: 1px solid var(--ns-border);
+  background: linear-gradient(180deg, #ffffff, #fbfcff);
+}
+#client-modal .modal-client{
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: .85rem;
+  align-items: center;
+  min-width: 0;
+}
+#client-modal .modal-logo{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--ns-border);
+  border-radius: .8rem;
+  padding: .4rem;
+}
+#client-modal .modal-client-text{ min-width: 0; }
+#client-modal .modal-client-text h2{
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+#client-modal .modal-client-text .muted{
+  margin-top: .2rem;
+  font-size: .92rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Carousel container stays the same, just improve feel */
+#client-modal .modal-body{
+  padding: .9rem 1.15rem 1.05rem;
+  overflow: hidden;
+}
+#client-modal .carousel-viewport{
+  border: 1px solid var(--ns-border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff, #fafbff);
+  overflow: hidden;
+}
+#client-modal .carousel-track{
+  transition: transform .35s cubic-bezier(.22,1,.36,1);
+}
+
+/* Slide structure + "reading" typography */
+#client-modal .carousel-slide{
+  padding: 1rem 1.15rem 1.15rem;
+  min-height: 240px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: .75rem;
+}
+
+#client-modal .slide-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin: 0;
+}
+#client-modal .slide-pill{
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  padding: .3rem .6rem;
+  border-radius: 999px;
+}
+#client-modal .slide-index{
+  font-size: .85rem;
+  color: #94a3b8;
+}
+
+/* THIS is what users read */
+#client-modal .slide-body{
+  /* keep text comfortable */
+  max-width: 68ch;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #0f172a;
+
+  /* scroll inside the slide (not the whole modal) */
+  overflow: auto;
+  padding-right: .35rem;
+}
+
+/* Paragraph rhythm */
+#client-modal .slide-body p{
+  margin: 0 0 .85rem;
+  color: #0f172a;
+}
+#client-modal .slide-body p:last-child{ margin-bottom: 0; }
+
+/* Muted callouts (your .muted class is used inside slides) */
+#client-modal .slide-body .muted{
+  color: #64748b;
+}
+
+/* Strong emphasis */
+#client-modal .slide-body strong{
+  font-weight: 800;
+  color: #0b1220;
+}
+
+/* Lists (your HTML uses ul.list) */
+#client-modal .slide-body ul.list{
+  margin: .25rem 0 .95rem;
+  padding-left: 1.1rem;
+}
+#client-modal .slide-body ul.list li{
+  margin: .4rem 0;
+  color: #0f172a;
+}
+#client-modal .slide-body ul.list li::marker{
+  color: #7c5cff;
+}
+
+/* Buttons + dots polish */
+#client-modal .carousel-btn{
+  border-radius: 12px;
+  border: 1px solid var(--ns-border);
+  background: #fff;
+  color: #334155;
+}
+#client-modal .carousel-btn:hover{
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 20px rgba(15,23,42,.10);
+}
+
+#client-modal .carousel-dots{ margin-top: .75rem; }
+#client-modal .carousel-dots button{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+/* Mobile: let it use full width, slightly smaller padding */
+@media (max-width: 720px){
+  #client-modal .modal-content{
+    width: calc(100vw - 1rem);
+    max-height: 78vh;
+  }
+  #client-modal .modal-body{ padding: .8rem .85rem .95rem; }
+  #client-modal .carousel-slide{
+    padding: .9rem .9rem 1rem;
+    min-height: 220px;
+  }
+  #client-modal .slide-body{
+    max-width: none;
+    font-size: .98rem;
+  }
+}
+
+/* FINAL: force client modal content text to black (override older gray rules) */
+#client-modal .slide-body,
+#client-modal .slide-body *{
+  color: #0f172a !important;
+}
+
+/* Clients modal: make logo more prominent */
+#client-modal .modal-client{
+  grid-template-columns: 80px 1fr !important; /* was ~56px */
+  gap: 1rem !important;
+}
+
+#client-modal .modal-logo{
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 1rem !important;
+  padding: .55rem !important;
+}
+
+/* Keep text from wrapping ugly next to bigger logo */
+#client-modal .modal-client-text{
+  min-width: 0;
+}
+#client-modal .modal-client-text h2,
+#client-modal #modal-subtitle{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mobile: still big, but not too huge */
+@media (max-width: 720px){
+  #client-modal .modal-client{
+    grid-template-columns: 64px 1fr !important;
+  }
+  #client-modal .modal-logo{
+    width: 64px !important;
+    height: 64px !important;
+  }
+}
+
+/* Clients page: make the main clients box use full grid width */
+#clients-page{ grid-column: span 12; }
+/* Clients page: in-place detail view */
+#clients-box{ grid-column: span 12; }
+
+.client-detail-head{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: .25rem 0 1rem;
+}
+
+.client-detail-title{
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  min-width: 0;
+}
+
+.client-detail-logo{
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  border-radius: .5rem;
+  border: 1px solid var(--ns-border);
+  padding: .15rem;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,.06);
+}
+
+.client-detail-title h3{
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.client-detail-title p{
+  margin: .1rem 0 0;
+  color: #475569;
+  font-weight: 600;
+  font-size: .85rem;
+}
+
+.client-detail-desc{
+  color: #334155;
+  line-height: 1.6;
+  margin-top: .4rem;
+}
+
+.client-detail-desc p{
+  margin: .4rem 0;
+}
+
+.client-detail-desc ul{
+  margin: .4rem 0;
+  padding-left: 1.1rem;
+}
+
+.client-detail-desc ul li{
+  margin: .2rem 0;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.client-detail-desc ul li::marker{
+  color: #7c5cff;
+  font-weight: 600;
+}
+
+.client-detail-desc blockquote{
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 4px solid #7c5cff;
+  background: rgba(124, 92, 255, 0.04);
+  border-radius: .35rem;
+  color: #0f172a;
+  font-style: italic;
+}
+
+.client-detail-desc blockquote p{
+  margin: 0;
+}
+
+.client-detail-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.client-detail-links a{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem .75rem;
+  border-radius: .6rem;
+  background: #f3f4f6;
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background .2s ease, color .2s ease;
+}
+
+.client-detail-links a:hover{
+  background: #e2e8f0;
+  color: var(--primary);
+}
+
+.client-detail-links a svg{
+  width: 1.2rem;
+  height: 1.2rem;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* Clients detail: tabs */
+.client-detail-tabs{
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.client-detail-tab{
+  display: inline-flex;
+  align-items: center;
+  padding: .6rem 1rem;
+  border-radius: .6rem;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+  color: #334155;
+  font-weight: 500;
+}
+
+.client-detail-tab:hover{
+  background: #f3f4f6;
+}
+
+.client-detail-tab.is-active{
+  position: relative;
+  color: var(--primary);
+}
+
+.client-detail-tab.is-active::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: var(--primary);
+}
+
+/* Clients detail: case studies (hidden by default) */
+.client-detail-content{
+  display: none;
+  margin-top: 1rem;
+}
+
+.client-detail-content.is-open{
+  display: block;
+}
+
+.client-detail-content h4{
+  margin: 0 0 .5rem;
+  font-size: 1rem;
+  color: #0f172a;
+  position: relative;
+}
+
+.client-detail-content h4::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: var(--primary);
+}
+
+.client-detail-content p{
+  margin: .4rem 0;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.client-detail-content ul{
+  margin: .4rem 0;
+  padding-left: 1.1rem;
+}
+
+.client-detail-content ul li{
+  margin: .2rem 0;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.client-detail-content ul li::marker{
+  color: #7c5cff;
+  font-weight: 600;
+}
+
+.client-detail-content blockquote{
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 4px solid #7c5cff;
+  background: rgba(124, 92, 255, 0.04);
+  border-radius: .35rem;
+  color: #0f172a;
+  font-style: italic;
+}
+
+.client-detail-content blockquote p{
+  margin: 0;
+}
+
+/* Clients detail: downloads */
+.client-detail-downloads{
+  margin-top: 1.5rem;
+}
+
+.client-detail-downloads a{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem .75rem;
+  border-radius: .6rem;
+  background: #f3f4f6;
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background .2s ease, color .2s ease;
+}
+
+.client-detail-downloads a:hover{
+  background: #e2e8f0;
+  color: var(--primary);
+}
+
+.client-detail-downloads a svg{
+  width: 1.2rem;
+  height: 1.2rem;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* Clients detail: embedded carousel (if applicable) */
+.client-detail-carousel{
+  margin-top: 1.5rem;
+}
+
+.client-detail-carousel .carousel-slide{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.client-detail-carousel .carousel-slide h4{
+  margin: 0;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.client-detail-carousel .carousel-slide p{
+  margin: .2rem 0;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.client-detail-carousel .carousel-slide img{
+  width: 100%;
+  height: auto;
+  border-radius: .5rem;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,.06);
+}
+
+/* Clients detail: embedded carousel navigation */
+.client-detail-carousel-nav{
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+.client-detail-carousel-nav button{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #e2e8f0;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.client-detail-carousel-nav button:hover{
+  background: #d1d5db;
+  transform: scale(1.1);
+}
+
+.client-detail-carousel-nav button[aria-current="true"]{
+  background: #7c5cff;
+  border-color: #7c5cff;
+}
+
+/* Clients detail: responsive adjustments */
+@media (max-width: 720px){
+  .client-detail-head{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .client-detail-title{
+    width: 100%;
+  }
+
+  .client-detail-logo{
+    width: 56px;
+    height: 56px;
+  }
+
+  .client-detail-title h3{
+    font-size: 1.1rem;
+  }
+
+  .client-detail-title p{
+    font-size: .8rem;
+  }
+
+  .client-detail-desc{
+    font-size: .9rem;
+  }
+
+  .client-detail-links a{
+    padding: .35rem .6rem;
+    font-size: .85rem;
+  }
+
+  .client-detail-tabs{
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+
+  .client-detail-tab{
+    padding: .5rem .8rem;
+    font-size: .85rem;
+  }
+
+  .client-detail-content h4{
+    font-size: 1rem;
+  }
+
+  .client-detail-content p{
+    font-size: .9rem;
+  }
+
+  .client-detail-content ul li{
+    padding-left: 1rem;
+  }
+
+  .client-detail-downloads a{
+    padding: .35rem .6rem;
+    font-size: .85rem;
+  }
+}
+
+/* Client detail page uses full grid width */
+#client-detail-page{ grid-column: span 12; }

@@ -247,10 +247,10 @@
           <div class="muted" style="margin-bottom:.6rem;">Click a logo to open a popup with a short description of the work delivered.</div>
 
           <section class="clients-grid" aria-label="Clients">
-            <button class="client-tile" data-key="Noventiq" aria-label="Noventiq">
+            <a class="client-tile" href="./client-noventiq.html" aria-label="Noventiq">
               <img src="images/clients/Noventiq.jpeg" alt="Noventiq logo" />
               <span>Noventiq</span>
-            </button>
+            </a>
             <button class="client-tile" data-key="BossInfo" aria-label="Boss Info">
               <img src="images/clients/BossInfo.png" alt="Boss Info logo" />
               <span>Boss Info</span>
@@ -332,6 +332,11 @@
         </div>
       </div>
 
+      <!-- NEW: quick section tabs (Context / Complexity / ...) -->
+      <div class="modal-tabs" aria-label="Case study sections">
+        <div id="modal-tabs" class="modal-tabs-inner"></div>
+      </div>
+
       <!-- Carousel / slides -->
       <div class="modal-body">
         <div class="modal-carousel" aria-label="Case study carousel">
@@ -356,8 +361,8 @@
     // Embedded clients modal logic
     const clientDescriptionsEmbedded = {
       Noventiq: {
-        title: 'Dow Jones – NetSuite Integration',
-        subtitle: 'Compliance screening integration (case study)',
+        title: 'Noventiq',
+        subtitle: 'Dow Jones Screening & Monitoring API integration',
         logo: 'images/clients/Noventiq.jpeg',
         slides: [
           {
@@ -437,6 +442,7 @@
     const modalSlides = document.getElementById('modal-slides');
     const modalDots = document.getElementById('modal-dots');
     const modalLogo = document.getElementById('modal-logo');
+    const modalTabs = document.getElementById('modal-tabs'); // NEW
 
     let currentSlideIndex = 0;
 
@@ -465,12 +471,34 @@
         const dots = Array.from(modalDots.querySelectorAll('button'));
         dots.forEach((d, idx) => d.setAttribute('aria-current', idx === clamped ? 'true' : 'false'));
       }
+
+      // NEW: sync tabs active state
+      if (modalTabs) {
+        const tabs = Array.from(modalTabs.querySelectorAll('button'));
+        tabs.forEach((t, idx) => t.setAttribute('aria-current', idx === clamped ? 'true' : 'false'));
+      }
+    }
+
+    // NEW: render tabs from slide labels
+    function renderTabsForSlides(slides) {
+      if (!modalTabs) return;
+      modalTabs.innerHTML = '';
+      slides.forEach((s, idx) => {
+        const tab = document.createElement('button');
+        tab.type = 'button';
+        tab.className = 'modal-tab';
+        tab.textContent = s.label || `Slide ${idx + 1}`;
+        tab.setAttribute('aria-label', `Open ${s.label || `slide ${idx + 1}`}`);
+        tab.addEventListener('click', () => setCarouselIndex(idx));
+        modalTabs.appendChild(tab);
+      });
     }
 
     function renderSlidesForClient(data) {
       if (!modalSlides || !modalDots) return;
       modalSlides.innerHTML = '';
       modalDots.innerHTML = '';
+      if (modalTabs) modalTabs.innerHTML = '';
       currentSlideIndex = 0;
 
       const slides = (data && data.slides && Array.isArray(data.slides) && data.slides.length)
@@ -494,6 +522,9 @@
         dot.addEventListener('click', () => setCarouselIndex(idx));
         modalDots.appendChild(dot);
       });
+
+      // NEW: tabs row (Context / Complexity / ...)
+      renderTabsForSlides(slides);
 
       setCarouselIndex(0);
     }
