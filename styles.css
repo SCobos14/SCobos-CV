@@ -1062,3 +1062,129 @@ body.ns-layout .summary{ color: #374151; }
   max-width: none !important;
 }
 
+/* ============================================================================
+   FIXED banner + fixed topbar (always visible)
+   Put at the VERY END of styles.css so it wins.
+   ============================================================================ */
+
+:root{
+  /* Adjust if your topbar height is different (48/56/64px are common) */
+  --ns-topbar-h: 48px;
+  --ns-banner-h: 56px;
+}
+
+/* Make the whole header fixed instead of sticky */
+.ns-topbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--ns-bg);
+}
+
+/* Banner fixed directly under the topbar */
+.ns-banner{
+  position: fixed;
+  top: var(--ns-topbar-h);
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: var(--ns-bg);
+  border-bottom: 1px solid var(--ns-border);
+
+  display: block !important; /* overrides any mobile hide rules */
+}
+
+/* Reserve space so content doesn't slide underneath fixed header+banner */
+body.ns-layout{
+  padding-top: calc(var(--ns-topbar-h) + var(--ns-banner-h));
+}
+
+/* Measure the real heights so the offsets are correct */
+.ns-topbar-inner{ min-height: var(--ns-topbar-h); }
+.ns-banner-inner{ min-height: var(--ns-banner-h); }
+
+/* Mobile: keep visible and allow wrapping */
+@media (max-width: 720px){
+  .ns-banner{ display: block !important; }
+  .ns-banner-inner{
+    min-height: var(--ns-banner-h);
+    padding: .5rem .75rem;
+  }
+}
+
+/* ============================================================================
+   FIX: keep the purple topbar look, and place banner below it
+   (Your last override replaced the topbar gradient with a flat ns-bg color)
+   Put this AFTER your "FIXED banner + fixed topbar" block (very end).
+   ============================================================================ */
+
+/* Restore topbar purple gradient + ensure it sits above banner */
+.ns-topbar{
+  background: linear-gradient(180deg, var(--ns-topbar), var(--ns-topbar-600)) !important;
+  color: #fff;
+  z-index: 1000;
+}
+
+/* Ensure topbar height variable matches your real topbar.
+   Your topbar-inner padding is tiny, so 48px is usually fine. If not, set to 56px. */
+:root{
+  --ns-topbar-h: 48px; /* change to 56px if the banner still overlaps */
+}
+
+/* Explicitly push banner under the topbar */
+.ns-banner{
+  top: var(--ns-topbar-h) !important;
+  z-index: 900; /* below topbar */
+}
+
+/* Make sure the page offset matches the fixed header stack */
+body.ns-layout{
+  padding-top: calc(var(--ns-topbar-h) + var(--ns-banner-h)) !important;
+}
+
+:root{
+  --ns-banner-h: 70px; /* adjust if needed */
+  --ns-topbar-h: 56px; /* adjust if needed */
+}
+
+/* 1) Search banner at the very top */
+.ns-banner{
+  position: fixed;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: block !important;
+}
+
+/* 2) CV Suite topbar beneath the banner */
+.ns-topbar{
+  position: fixed;
+  top: var(--ns-banner-h) !important;
+  left: 0;
+  right: 0;
+  z-index: 900;
+
+  /* keep purple */
+  background: linear-gradient(180deg, var(--ns-topbar), var(--ns-topbar-600)) !important;
+  color: #fff;
+}
+
+/* Reserve space for BOTH fixed bars */
+body.ns-layout{
+  padding-top: calc(var(--ns-banner-h) + var(--ns-topbar-h)) !important;
+}
+
+@media (max-width: 720px){
+  .ns-banner,
+  .ns-topbar{
+    display: none !important;
+  }
+
+  /* Remove the reserved space when headers are hidden */
+  body.ns-layout{
+    padding-top: 0 !important;
+  }
+}
