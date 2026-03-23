@@ -399,7 +399,7 @@ body.ns-layout { background: var(--ns-bg); color: var(--ns-text); }
   .ns-shell{ grid-template-columns: 1fr; }
   .ns-sidebar{ position: static; }
   .ns-grid{ grid-template-columns: 1fr; }
-  #skills, #education{ grid-column: span 1; }
+  #skills-toggle-box, #education{ grid-column: span 1; }
 }
 
 /* Align Skills/Education content edge with the Experience table (70% width) */
@@ -853,11 +853,6 @@ body.ns-layout .summary{ color: #374151; }
    CLEANUP: Remove unused "clients modal" styles (popup no longer exists)
    ----------------------------------------------------------------------------- */
 
-/* (Delete/disable everything that targets #client-modal) */
-#client-modal,
-#client-modal *{
-  all: unset;
-}
 
 /* -----------------------------------------------------------------------------
    Clients grid (index.html): simple image-only layout
@@ -910,3 +905,160 @@ body.ns-layout .summary{ color: #374151; }
 .ns-main{
   scroll-padding-top: var(--anchor-offset);
 }
+
+/* About me: make the summary-box visibly "boxed" inside a white portlet */
+#about-me .summary-box{
+  width: 100%;
+  max-width: 160ch;
+
+  background: #f8fafc;                 /* light gray so it contrasts with white portlet */
+  border: 1px solid var(--ns-border);  /* NS border token */
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+
+  /* slightly stronger than before so you can actually see it */
+  box-shadow: 0 8px 20px rgba(15,23,42,.08);
+}
+
+/* Hard override: About-me summary box must never collapse */
+#about-me .portlet-body{
+  width: 100%;
+  min-width: 0;  /* important inside CSS grid */
+}
+
+#about-me .summary-box{
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  /* keep the "box" look */
+  background: #f8fafc;
+  border: 1px solid var(--ns-border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 8px 20px rgba(15,23,42,.08);
+}
+
+@media (max-width: 1080px){
+  .ns-shell{ grid-template-columns: 1fr; }
+  .ns-sidebar{ position: static; }
+  .ns-grid{ grid-template-columns: 1fr; }
+
+  /* every portlet full width */
+  .ns-grid > .portlet{
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  /* Skills inner alignment: full width on small screens */
+  #skills-toggle-box .skills-switcher{ width: 100% !important; }
+}
+
+@media (max-width: 720px){
+  /* Hide the big banner on phones (you already wanted this) */
+  .ns-banner{ display: none !important; }
+
+  /* Make topbar nav wrap nicely */
+  .ns-topbar-inner{ grid-template-columns: 1fr; gap: .5rem; }
+  .ns-nav{ flex-wrap: wrap; }
+  .ns-tab{ padding: .4rem .5rem; }
+
+  /* Profile stacks */
+  .profile-wrap{ grid-template-columns: 1fr; }
+  .ns-profile .avatar{ margin-inline: auto; }
+  .ns-profile .profile-copy{ text-align: center; }
+
+  /* Summary boxes should be full width on mobile */
+  .summary-box,
+  .ns-profile .summary-box,
+  #about-me .summary-box{
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Education: links should not be "pill sized", make them readable rows */
+  #education .ns-list a.badge{
+    display: block;
+    width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  /* Clients grid: 2 columns on phones */
+  #clients .clients-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+  }
+  #clients .clients-grid > img{
+    max-width: 160px;
+    height: 80px;
+  }
+}
+
+    #about-me{
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    /* Comfortable padding + typography */
+    #about-me .portlet-body{
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      padding: 0; /* keep portlet's internal spacing consistent; we style an inner box */
+    }
+
+    /* Dedicated "about" container (your visible box) */
+    #about-me .about-box{
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+
+      background: #f8fafc;
+      border: 1px solid #e3e8ef;
+      border-radius: 12px;
+      padding: 16px 18px;
+
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Paragraph spacing inside About-me */
+    #about-me .about-box p{
+      margin: 0;
+      color: #374151;
+      line-height: 1.65;
+    }
+    #about-me .about-box p + p{
+      margin-top: 12px;
+    }
+
+    /* Mobile: keep it full width and slightly tighter padding */
+    @media (max-width: 720px){
+      #about-me .about-box{
+        padding: 14px 14px;
+      }
+    }
+
+    #about-me{
+  grid-column: 1 / -1 !important; /* span all columns */
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+  align-self: stretch;
+  min-width: 0; /* important inside grid/flex */
+}
+
+/* Ensure all direct children inside the about-me portlet can expand */
+#about-me > *{
+  min-width: 0;
+}
+
+/* Ensure your inline wrapper divs don't end up shrink-to-fit */
+#about-me > div{
+  width: 100% !important;
+  max-width: none !important;
+}
+
