@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>SCobos</title>
-  <meta name="description"
-    content="Personal CV website of Samuel Cobos Hurtado." />
+  <meta name="description" content="Personal CV website of Samuel Cobos Hurtado." />
   <link rel="stylesheet" href="./styles.css" />
   <link rel="preload" as="image" href="images/profile.jpg" />
 </head>
@@ -18,7 +17,8 @@
     <div class="ns-banner" role="img" aria-label="Top banner with logos, search and user">
       <div class="ns-banner-inner">
         <div class="banner-images" aria-hidden="false">
-          <img class="banner-img" src="images/sf.png" alt="Brand logo 2" style="width:200px;height:auto;margin-left:20px;" />
+          <img class="banner-img" src="images/sf.png" alt="Brand logo 2"
+            style="width:200px;height:auto;margin-left:20px;" />
         </div>
 
         <div class="banner-divider"></div>
@@ -32,19 +32,22 @@
 
         <div class="banner-user" aria-label="User">
           <!-- simple inline icon; replace with SVG or icon font if preferred -->
-          <img class="banner-icon" src="images/question.png" alt="Help" aria-hidden="true" style="width: 20px; height: 20px;" />
+          <img class="banner-icon" src="images/question.png" alt="Help" aria-hidden="true"
+            style="width: 20px; height: 20px;" />
           <span class="banner-name">Help</span>
         </div>
 
         <div class="banner-user" aria-label="User">
           <!-- simple inline icon; replace with SVG or icon font if preferred -->
-          <img class="banner-icon" src="images/threedots.svg" alt="Help" aria-hidden="true" style="width: 20px; height: 20px;" />
+          <img class="banner-icon" src="images/threedots.svg" alt="Help" aria-hidden="true"
+            style="width: 20px; height: 20px;" />
           <span class="banner-name">Feedback</span>
         </div>
 
         <div class="banner-user" aria-label="User">
           <!-- simple inline icon; replace with SVG or icon font if preferred -->
-          <img class="banner-icon" src="images/people.png" alt="Help" aria-hidden="true" style="width: 30px; height: 30px;" />
+          <img class="banner-icon" src="images/people.png" alt="Help" aria-hidden="true"
+            style="width: 30px; height: 30px;" />
           <span class="banner-name">
             <span class="banner-name-line">Samuel Cobos Hurtado</span>
             <span class="banner-role">Administrator</span>
@@ -63,6 +66,7 @@
         <a href="#experience" class="ns-tab">Experience</a>
         <a href="#skills-toggle-box" class="ns-tab">Skills</a>
         <a href="#education" class="ns-tab">Education</a>
+        <a href="#about-me" class="ns-tab">About me</a>
       </nav>
     </div>
   </header>
@@ -223,6 +227,13 @@
           </section>
         </div>
 
+        <div class="portlet" id="about-me">
+          <div class="portlet-title">About me</div>
+          <div class="muted">
+
+          </div>
+        </div>
+
         <div class="portlet" id="contact">
           <div class="portlet-title">Contact</div>
           <div class="contact-actions">
@@ -256,7 +267,7 @@
     const softList = document.getElementById('skills-soft');
     let showingSoft = false;
     if (toggleBtn && techList && softList) {
-      toggleBtn.addEventListener('click', function() {
+      toggleBtn.addEventListener('click', function () {
         if (!showingSoft) {
           techList.style.opacity = 0;
           setTimeout(() => {
